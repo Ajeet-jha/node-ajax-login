@@ -1,0 +1,25 @@
+<html>
+  <body>
+    <form>
+      Email: <input type="text" name="email" />
+      Password:<input type="password" name="password" />
+      <input type="submit" value="Submit" id="login"/>
+    </form>
+
+    <script>
+        document.getElementById("login").addEventListener('click',(e)=>{
+            e.preventDefault();
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("demo").innerHTML = xhttp.responseText;
+                }
+            };
+            xhttp.open("POST","http://localhost:5500/controllers/authenticate-controller", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send()
+        });
+    </script>
+
+  </body>
+</html>
